@@ -1,0 +1,128 @@
+<div class="mx-auto px-4 py-4 sm:px-8 lg:container">
+    <div class="mb-4 flex justify-between">
+        <div class="inline-block">
+            <h3 class="font-semibold text-gray-900 dark:text-white">DOM Dashboard</h3>
+            <div class="space-x-1 text-xs font-medium text-gray-400 dark:text-night-300">
+                <a href="" class="hover:text-primary-500">Dashboards</a>
+                <span> - Blogs</span>
+            </div>
+        </div>
+        <div class="inline-block space-x-4">
+            <button routerLink="/blog/addblogs"
+                class="flex-none rounded-md bg-white px-4 py-2.5 text-xs font-semibold text-gray-500 hover:text-primary-500 dark:bg-night-600 dark:text-night-200 dark:hover:bg-night-500">
+                Add News or Updates
+            </button>
+            <button
+                class="flex-none rounded-md bg-primary-500 px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-600">
+                News
+            </button>
+            <button
+                class="flex-none rounded-md bg-primary-500 px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-600">
+                Updates
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <div class="container px-10">
+            <div class="flex justify-between items-center mt-10 px-1 py-3">
+                <h1 class="lg:text-lg lg:font-extrabold md:text-base font-bold">Blogs</h1>
+                <!-- <h1 class="bg-primary bg-opacity-40  text-primary lg:px-7 capitalize lg:py-2 bg-slate-600 sm:px-6 sm:py-1.5 px-3 py-1 sm:text-base text-sm lg:text-lg rounded-3xl cursor-pointer"
+                    routerLink="/dashboard/blog/AddBlog">
+                    Add new
+                </h1> -->
+            </div>
+
+            <div class="overflow-x-auto relative shadow-md rounded-lg mt-10">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-grey ">
+                        <tr>
+                            <th scope="col" class="py-6 px-6">Blog Id</th>
+                            <th scope="col" class="py-6 px-6">Blog Title</th>
+                            <th scope="col" class="py-6 px-6">Category</th>
+                            <th scope="col" class="py-6 px-6">Status</th>
+                            <th scope="col" class="py-6 px-6">Publish</th>
+                            <th scope="col" class="py-6 px-6">Delete</th>
+                            <th scope="col" class="py-6 px-6">Edit</th>
+                        </tr>
+                    </thead>
+                    <ng-container *ngIf="blog">
+                        <tbody>
+                            <tr class="bg-white border-b border-grey " *ngFor="let item of blog let i = index">
+                                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
+                                    {{item.id}}
+                                </th>
+                                <td class="py-4 px-6 ">
+                                    <a routerLink="ShowBlog" [routerLink]="['/ShowBlog', item.id]"> {{item.title}}</a>
+                                </td>
+                                <td class="py-4 px-6 ">
+                                    <a routerLink="ShowBlog" [routerLink]="['/ShowBlog', item.id]"> {{item.type}}</a>
+                                </td>
+                                <td class="py-4 px-6 ">
+
+                                    <ng-container *ngIf="item.status == true; else gotoTem">
+                                        <a routerLink="ShowBlog" [routerLink]="['/ShowBlog', item.id]">
+                                            Live</a>
+                                    </ng-container>
+                                    <ng-template #gotoTem>
+                                        <a routerLink="ShowBlog" [routerLink]="['/ShowBlog', item.id]">
+                                            Draft</a>
+                                    </ng-template>
+                                </td>
+                                <td class="py-4  flex justify-around">
+                                    <ng-container *ngIf="item.status;else temp">
+                                        <div (click)="UnflipPublish(item.id)" class="form-check  form-switch">
+                                            <input
+                                                class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
+                                                type="checkbox" role="switch" id="flexSwitchCheckChecked76" checked>
+                                        </div>
+                                        <!-- <label [for]="1" form="" (click)="UnflipPublish(item.id)"
+                                            class="inline-flex relative items-center cursor-pointer">
+                                            <input type="checkbox" value="" checked [id]="item.id"
+                                                class="sr-only peer" />
+
+                                            <div
+                                                class="w-11 h-6 bg-red peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white dark:peer-checked:after:border-black after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border dark:after:border-black after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                                            </div>
+                                        </label> -->
+                                    </ng-container>
+                                    <ng-template #temp>
+                                        <div (click)="flipPublish(item.id)" class="form-check form-switch ml-7">
+                                            <input
+                                                class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
+                                                type="checkbox" role="switch" id="flexSwitchCheckDefault56">
+                                        </div>
+                                        <!-- <label [for]="1" form="" (click)="flipPublish(item.id)"
+                                            class="inline-flex relative items-center cursor-pointer">
+                                            <input type="checkbox" value="" [id]="item.id" class="sr-only peer" />
+                                            <div
+                                                class="w-11 h-6 bg-red peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white dark:peer-checked:after:border-black after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border dark:after:border-black after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                                            </div>
+                                        </label> -->
+                                    </ng-template>
+                                </td>
+
+                                <td class="py-4 px-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" (click)="deleteBlog(item.id)" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="w-6 h-6 cursor-pointer text-red">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                    </svg>
+                                </td>
+                                <td>
+                                    <a routerLink="AddBlog" class="text-primary text-center font-medium px-6 py-4  "
+                                        [routerLink]="['/blog/AddBlog', item.id]">Edit</a>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

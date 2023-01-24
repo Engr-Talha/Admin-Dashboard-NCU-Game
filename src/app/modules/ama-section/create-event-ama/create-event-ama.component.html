@@ -1,0 +1,128 @@
+<!-- <p-toast></p-toast>÷ -->
+<!-- <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="container px-5 sm:px-10 pt-10"> -->
+<div class="mx-auto px-4 py-4 sm:px-8 lg:container">
+    <div class="mb-4 flex justify-between">
+        <div class="inline-block">
+            <h3 class="font-semibold text-gray-900 dark:text-white">DOM Dashboard</h3>
+            <div class="space-x-1 text-xs font-medium text-gray-400 dark:text-night-300">
+                <a href="" class="hover:text-primary-500">Dashboards</a>
+                <span> -Create AMA's</span>
+            </div>
+        </div>
+        <div class="inline-block space-x-4">
+            <!-- <button routerLink="/blog/addblogs"
+                    class="flex-none rounded-md bg-white px-4 py-2.5 text-xs font-semibold text-gray-500 hover:text-primary-500 dark:bg-night-600 dark:text-night-200 dark:hover:bg-night-500">
+                    Add News or Updates
+                </button> -->
+            <button routerLink="/ama/ViewEvent"
+                class="flex-none rounded-md bg-primary-500 px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-600">
+                View All Events
+            </button>
+
+        </div>
+    </div>
+    <div class="container w-full flex justify-center mx -auto">
+        <div class="container w-7/12 ">
+            <!-- <form (ngSubmit)="onSubmit()" class="container px-5   sm:px-10 pt-10"> -->
+            <form [formGroup]="EventForm" (ngSubmit)="onSubmit()" class="container px-5 sm:px-10 pt-10">
+
+
+                <div>
+                    <label for="Title" class="block mb-1 text-sm sm:text-base font-medium ">Event Title</label>
+                    <input formControlName="title" type="text"
+                        class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                        placeholder="Enter Title Here" />
+                    <!-- <div *ngIf="(fc['title'].touched && fc['title'].invalid) || Submitted" class="alert alert-danger">
+                    <div *ngIf="fc['title'].errors?.['required']">
+                        <span class="text-red">Please provide title</span>
+                    </div> -->
+                </div>
+
+                <div class="mt-5">
+
+                    <label for="description" class="block mb-1 text-sm sm:text-base font-medium ">Description</label>
+                    <input formControlName="description" type="text" id="last_name"
+                        class="py-4 bg-gray-50 border border-grey  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                        placeholder="Enter description" />
+                    <!-- <div *ngIf="(fc['description'].touched && fc['description'].invalid) || Submitted" class="alert alert-danger">
+                <div *ngIf="fc['category'].errors?.['required']">
+                    <span class="text-red">Please provide category</span>
+                </div>
+            </div> -->
+                </div>
+
+                <div class="mt-5">
+
+                    <label for="time" class="block mb-1 text-sm sm:text-base font-medium ">Time</label>
+                    <p-calendar class="  " placeholder="Enter Time" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="date7" [showTime]="true" inputId="time"></p-calendar>
+                    <!-- <div *ngIf="(fc['category'].touched && fc['category'].invalid) || Submitted" class="alert alert-danger">
+                <div *ngIf="fc['category'].errors?.['required']">
+                    <span class="text-red">Please provide category</span>
+                </div>
+            </div> -->
+                </div>
+
+                <div class="mt-5">
+                    <div class="card border rounded-lg bg-slate-100 border-white">
+                        <ng-container *ngIf="imageUrl; else container">
+                            <div
+                                class="flex flex-col relative dark:border-2 dark:border-dashed dark:border-white justify-center mt-3 items-center w-full h-64 bg-gray-50 rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 px-3">
+                                <i class="text-white pi pi-times absolute top-3 right-3 bg-black p-2 rounded-full"
+                                    (click)="deleteImage()"></i>
+
+                                <img [src]="imageUrl" crossorigin="anonymous"
+                                    class="h-56 w-full shadow-lg rounded-3xl object-contain" />
+                            </div>
+                        </ng-container>
+                        <ng-template #container>
+                            <div class="flex justify-center items-center w-full py-3">
+                                <label for="dropzone-file"
+                                    class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-white dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                    <div class="flex flex-col justify-center items-center pt-5 pb-6">
+                                        <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                            </path>
+                                        </svg>
+                                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                            <span class="font-semibold">Click to upload</span> or drag and
+                                            drop
+                                        </p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                                            PNG, JPG (MAX. 800x400px)
+                                        </p>
+                                    </div>
+                                    <input id="dropzone-file" (change)="getImage($event)" type="file"
+                                        accept="image/png, image/jpeg" class="hidden" />
+                                </label>
+                            </div>
+                            <div *ngIf="Submitted && file == null">
+                                <span class="text-red">Please upload an Image</span>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="flex justify-end sm:px-12 mt-5 xl:px-24">
+                    <button
+                        class="flex-none rounded-md bg-primary-500 md:px-14 font-semibold md:py-3 sm:px-8 sm:py-2 px-6 py-1.5 rounded-3xl">
+                        Submit
+                    </button>
+                </div>
+                <br />
+                <br />
+                <br />
+            </form>
+        </div>
+
+    </div>
+
+</div>

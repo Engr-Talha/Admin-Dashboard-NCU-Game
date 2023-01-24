@@ -1,0 +1,21 @@
+:host::ng-deep  .p-calendar .p-inputtext {
+     
+
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+    border-width: 1px;
+    border-radius: 0.5rem;
+    background-color: rgb(249 250 251);
+    display: block;
+    padding-left: 1rem;
+
+}
+
+:host::ng-deep   .p-calendar{
+    width: 100%;
+    --tw-bg-opacity: 1;
+}
+

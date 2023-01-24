@@ -1,0 +1,166 @@
+<div class="mx-auto px-4 py-4 sm:px-8 lg:container">
+    <div class="mb-4 flex justify-between">
+        <div class="inline-block">
+            <h3 class="font-semibold text-gray-900 dark:text-white">DOM Dashboard</h3>
+            <div class="space-x-1 text-xs font-medium text-gray-400 dark:text-night-300">
+                <a href="" class="hover:text-primary-500">Dashboards</a>
+                <span> -View AMA's</span>
+            </div>
+        </div>
+        <div class="inline-block space-x-4">
+            <!-- <button routerLink="/blog/addblogs"
+                    class="flex-none rounded-md bg-white px-4 py-2.5 text-xs font-semibold text-gray-500 hover:text-primary-500 dark:bg-night-600 dark:text-night-200 dark:hover:bg-night-500">
+                    Add News or Updates
+                </button> -->
+            <button routerLink="/ama/CreateEvent"
+                class="flex-none rounded-md bg-primary-500 px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-600">
+                Add New Events
+            </button>
+        </div>
+    </div>
+
+    <div class="container px-10">
+        <div class="mt-10 flex items-center justify-between px-1 py-3">
+            <h1 class="font-semibold md:text-base lg:text-lg lg:font-semibold">Events</h1>
+            <!-- <h1 class="flex-none rounded-md bg-primary-500 px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-600"
+                routerLink="/dashboard/ama/AddEvent">
+                Create Event
+            </h1> -->
+        </div>
+
+        <div *ngFor="let item of events; let i = index">
+            <p-accordion>
+                <p-accordionTab>
+                    <ng-template pTemplate="header">
+                        <div class="flex w-full justify-between">
+                            <div>
+                                <h1
+                                    class="hover:text-primary-500 space-x-1 text-lg font-medium text-black-400 dark:text-night-300">
+                                    {{
+                                    item.title }}</h1>
+                            </div>
+                            <div class="flex flex-row gap-x-5">
+                                <h4 class="text-sm hover:text-primary-500"> {{item.date | slice:0:10}}</h4>
+                                <h4 class="text-sm hover:text-primary-500"> {{item.date | slice:11:19}}</h4>
+
+                                <!-- <h1 class="text-sm">{{ item.date }}</h1> -->
+                                <svg xmlns="http://www.w3.org/2000/svg" (click)="deleteBlog(item.id)" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    class="text-red  hover:bg-primary-500 h-6 w-6 cursor-pointer">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                </svg>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <ng-template pTemplate="content">
+                        <div class="mb-10 flex items-center justify-evenly">
+                            <div>Total Questions: {{ item.questions.length }}</div>
+
+                            <div>
+                                <p-button label="Add Questions" (click)="NewQuestion()" class="text-sm" icon="pi-question-circle
+                                " styleClass="p-button-warning text-sm" badge="{{ item.questions.length }}"
+                                    badgeClass="p-badge-danger"></p-button>
+                            </div>
+                        </div>
+                        <div>
+                            <ng-container class="mt-7 mb-7 flex justify-evenly" *ngIf="addquestion">
+                                <div class="">
+                                    <form class="mb-7" [formGroup]="QuestionForm"
+                                        (ngSubmit)="onQuestionFormSubmit(item.id)">
+                                        <div class="mb-7 flex place-items-end gap-x-8 flex justify-evenly">
+                                            <div class="w-2/3">
+                                                <label for="QuestionTitle"
+                                                    class="mb-1 block text-sm font-medium sm:text-base">Question
+                                                </label>
+                                                <input formControlName="QuestionTitle" type="text"
+                                                    class="border-grey block w-full rounded-lg border bg-gray-50 p-2.5 py-4 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                    placeholder="Enter Question Here" />
+                                            </div>
+                                            <div class="h-1/3">
+                                                <button
+                                                    class="bg-primary hover:bg-primary-500 hover:text-white text-primary rounded-3xl bg-gray-700 bg-opacity-40 px-5 py-1.5 font-Semibold sm:px-5 sm:py-2 md:px-7 md:py-3">
+                                                    Submit Question
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <ng-container class="mt-10" *ngIf="item.questions.length > 0">
+                            <div *ngFor="let myitem of item.questions; let i = index">
+                                <p-accordion class="mt-7">
+                                    <p-accordionTab>
+                                        <ng-template pTemplate="header">
+                                            <div class="flex w-full items-center justify-between">
+                                                <div>
+                                                    <h1>{{ myitem.title }}</h1>
+                                                </div>
+
+                                                <div class="flex flex-row items-center gap-x-7">
+                                                    <ng-container *ngIf="myitem.answers.length <= 0">
+                                                        <div>
+                                                            <button pButton type="button" (click)="NewAnswer()"
+                                                                label="Add Answer"
+                                                                class="p-button flex-none rounded-md bg-primary-500 px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-600"></button>
+                                                        </div>
+                                                    </ng-container>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        (click)="DeleteQuestion(myitem.id)" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="text-red h-6 w-6 cursor-pointer">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+
+                                        <ng-template pTemplate="content ">
+                                            <ng-container *ngIf="addanswer; else templateName">
+                                                <div>
+                                                    <form [formGroup]="AnswerForm" (ngSubmit)="AnswerSubmit(myitem.id)">
+                                                        <div
+                                                            class="mb-7 flex place-items-end gap-x-8 flex justify-evenly">
+                                                            <div class="w-2/3">
+                                                                <label for="AnswerTitle"
+                                                                    class="mb-1 block text-sm font-medium sm:text-base">Answer
+                                                                </label>
+                                                                <input formControlName="AnswerTitle" type="text"
+                                                                    class="border-grey block w-full rounded-lg border bg-gray-50 p-2.5 py-4 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                    placeholder="Enter Question Here" />
+
+                                                            </div>
+                                                            <div class="h-1/3">
+                                                                <button type="submit" class="
+                                                                   text-primary rounded-3xl bg-primary-400 bg-opacity-40 px-6 py-1.5 font-bold sm:px-8 sm:py-2 md:px-14 md:py-3
+                                                                    ">
+                                                                    Submit
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </form>
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-template #templateName>
+                                                <div *ngFor="let answers of myitem.answers; let i = index">
+                                                    <div>{{ answers.title }}</div>
+                                                </div>
+                                            </ng-template>
+                                        </ng-template>
+                                    </p-accordionTab>
+                                </p-accordion>
+                            </div>
+                        </ng-container>
+                    </ng-template>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+    </div>
+</div>

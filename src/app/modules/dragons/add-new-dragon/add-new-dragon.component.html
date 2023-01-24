@@ -1,0 +1,204 @@
+<form [formGroup]="DragonForm" (ngSubmit)="onSubmit()">
+    <div class="w-4/5 container gap-x-8 flex flex-row mx-auto">
+        <div class="w-2/4">
+            <div class="mt-3">
+                <label for="name" class="block mb-1 text-sm sm:text-base font-medium">Name</label>
+                <input formControlName="name" type="text"
+                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Enter Name Here" />
+            </div>
+
+            <div class="mt-3">
+                <label for="dragonClass" class="block mb-1 text-sm sm:text-base font-medium">Dragon Class</label>
+                <input formControlName="dragonClass" type="text"
+                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Enter Dragon Class" />
+            </div>
+
+            <div class="mt-3">
+                <label for="dragonType" class="block mb-1 text-sm sm:text-base font-medium">Dragon Type</label>
+                <input formControlName="dragonType" type="text"
+                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Enter Name Here" />
+            </div>
+
+            <div class="mt-3">
+                <label for="dragonType" class="block mb-1 text-sm sm:text-base font-medium">Territory</label>
+                <p-dropdown [options]=" TerritoryName" [(ngModel)]="selectedTerritory"
+                    [ngModelOptions]="{standalone: true}" optionLabel="name" [showClear]="true"></p-dropdown>
+            </div>
+
+            <div class="mt-3">
+                <label for="unlockLevel" class="block mb-1 text-sm sm:text-base font-medium">UnLock Level</label>
+                <input formControlName="unlockLevel" type="text"
+                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Enter Unlock Level" />
+            </div>
+
+
+            <div class="mt-3">
+                <label for="mapPiece" class="block mb-1 text-sm sm:text-base font-medium">Map Piece</label>
+                <input formControlName="mapPiece" type="text"
+                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Enter Map Piece Level" />
+            </div>
+
+
+
+
+
+            <div class="mt-3">
+                <label for="attack" class="block mb-1 text-sm sm:text-base font-medium">Attack</label>
+                <input formControlName="attack" type="text"
+                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Enter Attack Here" />
+            </div>
+
+            <div class="mt-3">
+                <label for="defense" class="block mb-1 text-sm sm:text-base font-medium">Defense</label>
+                <input formControlName="defense" type="text"
+                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Enter Dragon Defense Here" />
+            </div>
+
+            <div class="mt-3">
+                <label for="health" class="block mb-1 text-sm sm:text-base font-medium">Health</label>
+                <input formControlName="health" type="text"
+                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Enter Dragon Health Here" />
+            </div>
+
+            <div class="mt-3">
+                <label for="price" class="block mb-1 text-sm sm:text-base font-medium">Price</label>
+                <input formControlName="price" type="text"
+                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Enter Price Here" />
+            </div>
+
+            <p></p>
+        </div>
+        <div class="mt-4 w-2/4">
+            <div class="card border rounded-lg bg-slate-100 border-white">
+                <ng-container *ngIf="imageUrl; else container">
+                    <div
+                        class="flex flex-col relative dark:border-2 dark:border-dashed dark:border-white justify-center mt-3 items-center w-full h-64 bg-gray-50 rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 px-3">
+                        <i class="text-white pi pi-times absolute top-3 right-3 bg-black p-2 rounded-full"
+                            (click)="deleteImage()"></i>
+
+                        <img [src]="imageUrl" crossorigin="anonymous"
+                            class="h-56 w-full shadow-lg rounded-3xl object-contain" />
+                    </div>
+                </ng-container>
+                <ng-template #container>
+                    <div class="flex justify-center items-center w-full py-3">
+                        <label for="dropzone-file"
+                            class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-white dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                            <div class="flex flex-col justify-center items-center pt-5 pb-6">
+                                <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                    </path>
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="font-semibold">Click to upload</span> or drag and
+                                    drop
+                                </p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">
+                                    PNG, JPG (MAX. 800x400px)
+                                </p>
+                            </div>
+                            <input id="dropzone-file" (change)="getImage($event)" type="file"
+                                accept="image/png, image/jpeg" class="hidden" />
+                        </label>
+                    </div>
+                    <div *ngIf="Submitted && file == null">
+                        <span class="text-red">Please upload an Image</span>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-9 mx-auto w-3/4 bg-gray-50">
+        <div class="justify-center gap-4 flex flex-row">
+            <div>
+                <button
+                    class="bg-primary bg-opacity-40 bg-gray-700 text-primary md:px-14 font-bold md:py-3 sm:px-8 sm:py-2 px-6 py-1.5 rounded-3xl"
+                    type="button" (click)="addAttributes()">
+                    Add Dragon Attributes
+                </button>
+            </div>
+            <div>
+                <button
+                    class="bg-primary bg-opacity-40 bg-gray-700 text-primary md:px-14 font-bold md:py-3 sm:px-8 sm:py-2 px-6 py-1.5 rounded-3xl"
+                    type="button" (click)="addSkills()">
+                    Add Dragon Skills
+                </button>
+            </div>
+        </div>
+        <div class="mt-3 flex gap-x-14  justify-around px-5">
+            <div formArrayName="Attributes">
+                <div *ngFor="let Attributes of Attributes.controls; let i = index">
+                    <div class="flex items-center gap-x-7 flex-row" [formGroupName]="i">
+                        <div class="mt-3 flex gap-x-6 flex-row">
+                            <div class="mt-3">
+                                <label for="Title" class="block mb-1 text-sm sm:text-base font-medium">Attribute</label>
+                                <input formControlName="attributeName" type="text"
+                                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="Attribute" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="Title" class="block mb-1 text-sm sm:text-base font-medium">Attribute
+                                    Value</label>
+                                <input formControlName="attributeValue" type="text"
+                                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="Attribute Value" />
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <i class="text-white pi pi-times absolute bg-black p-2 rounded-full"
+                                (click)="removeSkill(i)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div formArrayName="skills">
+                <div *ngFor="let skill of skills.controls; let i = index">
+                    <div class="flex items-center gap-x-7 flex-row" [formGroupName]="i">
+                        <div class="mt-3 flex gap-x-6 flex-row">
+                            <div class="mt-3">
+                                <label for="Title" class="block mb-1 text-sm sm:text-base font-medium">Skill
+                                    Name</label>
+                                <input formControlName="skillname" type="text"
+                                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="Attribute" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="Title" class="block mb-1 text-sm sm:text-base font-medium">Skill
+                                    Type</label>
+                                <input formControlName="skillvalue" type="text"
+                                    class="py-4 bg-gray-50 border border-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="Skill Type" />
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <i class="text-white pi pi-times absolute bg-black p-2 rounded-full"
+                                (click)="removeAttributes(i)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 flex justify-end sm:px-12 xl:px-24">
+        <button
+            class="bg-primary bg-opacity-40 bg-gray-700 text-primary md:px-14 font-bold md:py-3 sm:px-8 sm:py-2 px-6 py-1.5 rounded-3xl"
+            type="submit">
+            Submit
+        </button>
+    </div>
+</form>
