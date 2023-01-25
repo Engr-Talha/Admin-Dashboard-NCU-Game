@@ -121,10 +121,7 @@
                   >
                 </td>
                 <td>
-                  <a
-                    class="pi pi-eye px-6 py-4 text-center font-medium"
-                    routerLink="AddBlog"
-                    [routerLink]="['/users/ViewUserDetails', item.id]"></a>
+                  <a class="pi pi-eye px-6 py-4 text-center font-medium" (click)="onClickViewUser(item)"></a>
                   <!-- <a
                     routerLink="AddBlog"
                     class="text-primary px-6 py-4 text-center font-medium"

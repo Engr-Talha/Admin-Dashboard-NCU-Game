@@ -24,6 +24,6 @@ export class UsersService {
   }
 
   getUserBattlesById(id: number) {
-    return this.http.get(`${environment.api}/api/admin/battles/${id}`);
+    return this.http.get(`${environment.api}/api/admin/battles?q=${id}`);
   }
 }

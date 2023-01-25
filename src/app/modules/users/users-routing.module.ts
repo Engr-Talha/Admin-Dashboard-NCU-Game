@@ -8,7 +8,7 @@ import { ViewallusersComponent } from './viewallusers/viewallusers.component';
 const routes: Routes = [
   { path: '', redirectTo: 'ViewUsers', pathMatch: 'full' },
   { path: 'ViewUsers', component: ViewallusersComponent, canActivate: [UserGuardGuard] },
-  { path: 'ViewUserDetails/:id', component: ViewUserDetailsComponent, canActivate: [UserGuardGuard] },
+  { path: 'ViewUserDetails', component: ViewUserDetailsComponent, canActivate: [UserGuardGuard] },
   { path: 'ViewUserBattles', component: UserBattlesComponent, canActivate: [UserGuardGuard] },
   // { path: "Createrritory/:id", component: AddTerritoryComponent },
 ];

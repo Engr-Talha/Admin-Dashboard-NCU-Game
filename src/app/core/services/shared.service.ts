@@ -15,4 +15,12 @@ export class SharedService {
       ? false
       : true;
   }
+
+  setUserProfile(userProfile: any) {
+    this.userProfile = userProfile;
+  }
+
+  getUserProfile() {
+    return this.userProfile;
+  }
 }

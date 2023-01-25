@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Users } from 'src/app/core/services/UsersModels';
 import { UsersService } from 'src/app/core/services/users.service';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/app/core/services/shared.service';
 
 @Component({
   selector: 'app-viewallusers',
@@ -9,7 +11,7 @@ import { UsersService } from 'src/app/core/services/users.service';
 })
 export class ViewallusersComponent {
   Users: Users[] = [];
-  constructor(private UsersService: UsersService) {}
+  constructor(private sharedService: SharedService, private UsersService: UsersService, private router: Router) {}
 
   ngOnInit(): void {
     this.UsersService.getAllUsers().subscribe({
@@ -75,5 +77,9 @@ export class ViewallusersComponent {
     });
   }
 
+  onClickViewUser(user: any) {
+    this.sharedService.setUserProfile(user);
+    this.router.navigate(['/users/ViewUserDetails']);
+  }
   deleteUser(itemID: any) {}
 }
