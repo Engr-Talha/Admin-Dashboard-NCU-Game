@@ -24,7 +24,8 @@
     "prettier": "prettier --config ./.prettierrc --write \"src/{app,environments}/**/*{.ts,.html,.scss,.json}\"",
     "prettier:verify": "prettier --config ./.prettierrc --check \"src/{app,environments}/**/*{.ts,.html,.scss,.json}\"",
     "prettier:staged": "pretty-quick --staged",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "deploy":"git add . && git commit -m\"development\" && git push origin main"
   },
   "private": true,
   "dependencies": {
