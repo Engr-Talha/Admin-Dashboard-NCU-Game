@@ -25,25 +25,37 @@ export class Menu {
           icon: 'assets/icons/outline/chart-pie.svg',
           label: 'Dragons',
           route: '/dragons',
-          children: [{ label: 'Add Dragon +', route: '/dragons/CreateDragons' }, { label: 'View Dragon', route: '/dragons/ViewDragons' }],
+          children: [
+            { label: 'Add Dragon +', route: '/dragons/CreateDragons' },
+            { label: 'View Dragon', route: '/dragons/ViewDragons' },
+          ],
         },
         {
           icon: 'assets/icons/outline/chart-pie.svg',
           label: 'Territory',
           route: '/territory',
-          children: [{ label: 'Add Territory +', route: '/territory/Createrritory' }, { label: 'View Territories ', route: '/territory/ViewTerritory' }],
+          children: [
+            { label: 'Add Territory +', route: '/territory/Createrritory' },
+            { label: 'View Territories ', route: '/territory/ViewTerritory' },
+          ],
         },
         {
           icon: 'assets/icons/outline/chart-pie.svg',
           label: 'AMA',
           route: '/ama',
-          children: [{ label: 'View AMAs ', route: '/ama/ViewEvent' }, { label: 'Add AMA ', route: '/ama/CreateEvent' }],
+          children: [
+            { label: 'View AMAs ', route: '/ama/ViewEvent' },
+            { label: 'Add AMA ', route: '/ama/CreateEvent' },
+          ],
         },
         {
           icon: 'assets/icons/outline/chart-pie.svg',
           label: 'Users',
           route: '/users',
-          children: [{ label: 'View Users ', route: '/users/ViewUsers' }, { label: 'Add Users ', route: '/users/ViewUserDetails' }],
+          children: [
+            { label: 'View Users ', route: '/users/ViewUsers' },
+            { label: 'View User Battles ', route: '/users/ViewUserBattles' },
+          ],
         },
         {
           icon: 'assets/icons/outline/lock-closed.svg',

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserGuardGuard } from './core/guards/user-guard.guard';
 
 const routes: Routes = [
   {

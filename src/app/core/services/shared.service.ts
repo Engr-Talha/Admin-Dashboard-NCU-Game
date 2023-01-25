@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ACCESS_TOKEN } from '../utils/Constants';
+import { ACCESS_TOKEN_CAMEL_CASE, ADMIN_ROLE_LABEL, ROLE_LABEL } from '../utils/Constants';
 import { StorageService } from './StorageService';
 
 @Injectable({
@@ -7,11 +7,11 @@ import { StorageService } from './StorageService';
 })
 export class SharedService {
   public userProfile: any;
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService) {}
 
   isUserLoggedIn(): boolean {
-    return typeof this.storageService.getItemWithoutEncryption(ACCESS_TOKEN) ==
-      'undefined'
+    return typeof this.storageService.getItemWithoutEncryption(ACCESS_TOKEN_CAMEL_CASE) == 'undefined' ||
+      this.storageService.getItemWithoutEncryption(ROLE_LABEL) !== ADMIN_ROLE_LABEL
       ? false
       : true;
   }
